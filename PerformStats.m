@@ -1,4 +1,4 @@
-function [h,P,stats,stats_all] = PerformStats(X,Group,alpha)
+function [h,P,stats] = PerformStats(X,Group,alpha)
 % Perform Kruskal Wallis and Nemenyi test on the dataset with the provided
 % alpha
 % [h,p,stats] = PerformStats(X,Group,alpha)
@@ -33,7 +33,7 @@ end
 % Rank the obtained data.
 [rankedData,tiedNums] = rankData(data);
 % Analysis of variance
-[h,P] = kWallis(rankedData,tiedNums);
+[h,P] = kWallis(rankedData,tiedNums,alpha);
 fprintf('\nHypothesis = %d; p = %f \n',h,P);
 % Post-hoc analysis - Tukey test
 [stats] = nemenyi(rankedData,tiedNums,alpha);
