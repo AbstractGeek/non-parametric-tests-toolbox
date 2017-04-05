@@ -23,10 +23,11 @@ if nargin == 2
 end
 
 % Split vector into subvectors and remove NaN's if there are any.
-data = cell(max(Group),1);
+[u_groups, ~, u_group_no] = unique(Group);
+data = cell(length(u_groups),1);
 for i = 1:size(X,1)
     if (isnan(X(i,1))~= 1)
-        data{Group(i,1),1} = [data{Group(i,1),1};X(i,1)];
+        data{u_group_no(i,1),1} = [data{u_group_no(i,1),1};X(i,1)];
     end
 end
 
